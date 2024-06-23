@@ -1,0 +1,38 @@
+@startuml
+
+
+entity Source {
+    * id
+    title: string
+    fragments: Fragment
+}
+
+entity Fragment {
+    * id
+    title: string
+    content: string
+    paragraphs: Paragraph[]
+}
+
+Source -- Fragment
+
+entity Paragraph {
+    content: string
+    level: 1 | 2 | 3 | 4 | 5 | undefined
+}
+
+Fragment -- Paragraph
+
+entity Term {
+    * id
+    notes: string
+}
+
+entity TermNote {
+    * id
+    terms: Term
+    notes: string
+}
+
+
+@enduml
