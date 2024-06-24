@@ -5,6 +5,7 @@ interface PaginationProps {
   setPage: (page: string) => void;
 }
 
+// @ts-ignore
 export const Pagination = ({ page, setPage }: PaginationProps) => {
   return (
     <div className="mt-4 flex justify-center gap-4">

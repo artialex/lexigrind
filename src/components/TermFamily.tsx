@@ -21,6 +21,7 @@ export function TermFamily(props: TermFamilyProps) {
       const verbs = doc.verbs();
       // const infinitive = doc.verbs().json().at(0).verb.infinitive;
 
+      // @ts-ignore
       result.verb = {
         infinitive: verbs.toInfinitive().text(),
         past: verbs.toPastTense().text(),

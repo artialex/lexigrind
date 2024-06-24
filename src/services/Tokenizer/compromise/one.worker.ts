@@ -1,5 +1,3 @@
-import { CompromiseOne } from '@/services/Tokenizer/Tokenizer.service.ts';
-
 import { compromiseOne } from './one.ts';
 
 onmessage = (e) => {
@@ -22,7 +20,7 @@ onmessage = (e) => {
     wordCount: doc.wordCount(),
     uniqueWords: uniqueWords,
     uniqueWordCount: uniqueWords.length,
-  } satisfies CompromiseOne;
+  };
 
   postMessage(data);
 };

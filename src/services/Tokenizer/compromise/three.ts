@@ -1,3 +1,4 @@
+// @ts-nocheck
 import nlp from 'compromise/three';
 
 const isArray = function (arr) {

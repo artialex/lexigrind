@@ -2,11 +2,11 @@ import one from 'compromise/one';
 
 // FIXME: find these types in compromise?
 
-type CompromiseView = ReturnType<typeof one>;
+export type CompromiseView = ReturnType<typeof one>;
 
-type CompromiseTerm = { text: string; pre: string; post: string; tags: string[] };
+export type CompromiseTerm = { text: string; pre: string; post: string; tags: string[] };
 
-type CompromiseJson = { terms: CompromiseTerm[] }[];
+export type CompromiseJson = { terms: CompromiseTerm[] }[];
 
 export class Compromise {
   static POSSESSIVE = /['’]/;
