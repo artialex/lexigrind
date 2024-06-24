@@ -1,14 +1,21 @@
 import { merge } from 'lodash';
 import PouchDB from 'pouchdb-browser';
 
-const db = new PouchDB('terms', {
-  revs_limit: 1,
-});
+// FIXME: make class
+
+function createDatabase() {
+  return new PouchDB('terms', {
+    revs_limit: 1,
+  });
+}
+
+let db = createDatabase();
 
 type DBTerm = { term: Lexi.Term };
 
 export async function upsertMany(terms: [string, Lexi.Term][]) {
   await db.destroy();
+  db = createDatabase();
   await db.bulkDocs(
     terms.map(([id, term]) => ({
       _id: id,

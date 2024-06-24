@@ -1,9 +1,15 @@
 import { merge } from 'lodash';
 import PouchDB from 'pouchdb-browser';
 
-const db = new PouchDB('sources', {
-  revs_limit: 1,
-});
+// FIXME: make class
+
+function createDatabase() {
+  return new PouchDB('sources', {
+    revs_limit: 1,
+  });
+}
+
+let db = createDatabase();
 
 interface PaginationOptions {
   limit: number;
@@ -14,6 +20,9 @@ type DBSource = { source: Lexi.Source };
 
 export async function bulkInsert(sources: Lexi.Source[]) {
   await db.destroy();
+
+  db = createDatabase();
+
   await db.bulkDocs<DBSource>(
     sources.map((source) => ({
       _id: source.id,
