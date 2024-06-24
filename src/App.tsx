@@ -44,7 +44,7 @@ const client = new QueryClient();
 export function App() {
   return (
     <QueryClientProvider client={client}>
-      <RouterProvider router={createBrowserRouter(elements)} />
+      <RouterProvider router={createBrowserRouter(elements, { basename: '/lexigrind/' })} />
     </QueryClientProvider>
   );
 }
