@@ -1,32 +1,60 @@
 import one from 'compromise/one';
 
-type View = ReturnType<typeof one>;
+// FIXME: find these types in compromise?
 
-export function getSentenceCount(view: View) {
-  return view.length;
-}
+type CompromiseView = ReturnType<typeof one>;
 
-export function getWordCount(view: View) {
-  return view.wordCount();
-}
+type CompromiseTerm = { text: string; pre: string; post: string; tags: string[] };
 
-export function getUniqueWords(view: View) {
-  const json = view.terms().unique().json() as Array<{
-    terms: Array<{ text: string; tags: string[] }>;
-  }>;
+type CompromiseJson = { terms: CompromiseTerm[] }[];
 
-  return json
-    .flatMap((_) =>
-      _.terms.map((_) => {
-        const found = _.text.match(/['’]/);
+export class Compromise {
+  static POSSESSIVE = /['’]/;
 
-        if (_.tags.includes('Possessive') && found) {
-          const [text] = _.text.split(/['’]/);
-          return text;
-        }
-        return _.text;
-      }),
-    )
-    .filter(Boolean)
-    .map((_) => _.toLowerCase());
+  static getSentenceCount(view: CompromiseView) {
+    return view.length;
+  }
+
+  static getWordCount(view: CompromiseView) {
+    return view.wordCount();
+  }
+
+  static getUniqueWords(view: CompromiseView) {
+    const json = view.terms().unique().json() as CompromiseJson;
+
+    return json
+      .flatMap((_) => _.terms)
+      .reduce<CompromiseTerm[]>(this.resolveTokenizationInconsistencies, [])
+      .map((_) => _.text.toLowerCase());
+  }
+
+  /**
+   * FIXME: split into several functions?
+   */
+  private static resolveTokenizationInconsistencies(acc: CompromiseTerm[], cur: CompromiseTerm) {
+    if (cur.text === '') {
+      acc[acc.length - 1].post += cur.post;
+    } else if (cur.text.match(Compromise.POSSESSIVE) && cur.tags.includes('Possessive')) {
+      const apostrophe = cur.text.match(Compromise.POSSESSIVE);
+      const [text, possessive] = cur.text.split(Compromise.POSSESSIVE);
+
+      cur.text = text;
+      cur.post = apostrophe + possessive + cur.post;
+      acc.push(cur);
+    } else if (cur.text.includes('—')) {
+      acc[acc.length - 1].post += cur.text;
+    } else {
+      acc.push(cur);
+    }
+
+    return acc;
+  }
+
+  static getTokens(view: CompromiseView) {
+    const json = view.json() as CompromiseJson;
+
+    return json //
+      .flatMap((_) => _.terms)
+      .reduce<CompromiseTerm[]>(this.resolveTokenizationInconsistencies, []);
+  }
 }

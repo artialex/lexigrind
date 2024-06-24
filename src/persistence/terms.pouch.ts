@@ -7,6 +7,16 @@ const db = new PouchDB('terms', {
 
 type DBTerm = { term: Lexi.Term };
 
+export async function upsertMany(terms: [string, Lexi.Term][]) {
+  await db.destroy();
+  await db.bulkDocs(
+    terms.map(([id, term]) => ({
+      _id: id,
+      term,
+    })),
+  );
+}
+
 export async function getAllTerms() {
   const response = await db.allDocs<DBTerm>({ include_docs: true });
 

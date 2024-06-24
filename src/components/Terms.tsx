@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 
-import { terms } from '@/stores/terms.store.ts';
+import { terms } from '@/stores/TermsStore.ts';
 
 export const Terms = observer(() => {
   // const terms = useUnit($terms);
@@ -22,8 +22,3 @@ export const Terms = observer(() => {
     </ul>
   );
 });
-
-/**
- * Import / Export
- * https://stackoverflow.com/a/58183426
- */

@@ -4,8 +4,6 @@ import { observer } from 'mobx-react-lite';
 
 import { ParagraphStore } from '@/stores/ParagraphStore.ts';
 
-// import { paragraphs } from '@/init/paragraphs.init.ts';
-
 export const FragmentGutter = observer(({ paragraphs }: { paragraphs: ParagraphStore[] }) => {
   return (
     <div className="fixed flex h-[calc(100%-2rem)] gap-0.5">

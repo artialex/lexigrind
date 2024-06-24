@@ -5,7 +5,7 @@ interface PaginationProps {
   setPage: (page: string) => void;
 }
 
-export function Pagination({ page, setPage }: PaginationProps) {
+export const Pagination = ({ page, setPage }: PaginationProps) => {
   return (
     <div className="mt-4 flex justify-center gap-4">
       <button className="inline-flex w-6 items-center justify-center rounded bg-slate-100 transition hover:bg-slate-200">
@@ -44,4 +44,4 @@ export function Pagination({ page, setPage }: PaginationProps) {
       </button>
     </div>
   );
-}
+};

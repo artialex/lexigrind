@@ -1,4 +1,4 @@
-import { ArrowLeft, Edit } from 'react-feather';
+import { ArrowLeft } from 'react-feather';
 import { Link, useParams } from 'react-router-dom';
 
 import { Subheader } from '@/components/Subheader.tsx';
@@ -39,7 +39,7 @@ export const FragmentToolbar = ({ fragment }: { fragment: Lexi.Fragment }) => {
       </div>
       */}
       <div className="ml-auto">
-        <TextStatsView stats={fragment.stats} />
+        <TextStatsView stats={fragment.stats} hidePercentages />
       </div>
       {/*
         <button className="lexi-button lexi-word-0 px-1">

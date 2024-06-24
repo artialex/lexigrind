@@ -1,23 +1,19 @@
 import debug from 'debug';
 
 import { compromiseThree } from '@/services/Tokenizer/compromise/three.ts';
-import { Lexi } from '@/types';
 
 import ThreeWorker from './compromise/three.worker?worker';
 
 const trace = debug('lexigrind:tokenizer');
 
-// type TokenizationLevel = 'paragraphs' | 'words' | 'unique-words' | 'adjectives';
-// export async function tokenize(text: string, levels: TokenizationLevel[]) {}
-
-export const Tokenizer = {
-  tokenize: async (text: string): Promise<ReturnType<typeof compromiseThree>> => {
+export class Tokenizer {
+  static async tokenize(text: string): Promise<ReturnType<typeof compromiseThree>> {
     return new Promise((resolve) => {
       resolve(compromiseThree(text));
     });
-  },
+  }
 
-  three: async (text: string): Promise<Lexi.TextStats> => {
+  static async three(text: string): Promise<Lexi.TextStats> {
     trace('tokenize', 'started');
 
     return new Promise((resolve) => {
@@ -31,8 +27,11 @@ export const Tokenizer = {
         worker.terminate();
       };
     });
-  },
-};
+  }
+}
+
+// type TokenizationLevel = 'paragraphs' | 'words' | 'unique-words' | 'adjectives';
+// export async function tokenize(text: string, levels: TokenizationLevel[]) {}
 
 /*
 

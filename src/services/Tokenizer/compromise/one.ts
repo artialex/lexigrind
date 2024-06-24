@@ -6,4 +6,10 @@ import one from 'compromise/one';
 
 one.plugin(plg);
 
+// const methods = one.world().methods;
+//
+// methods.one.tokenize.splitTerms = (str) => {
+//   return str.split(/ /);
+// };
+
 export const compromiseOne = one;

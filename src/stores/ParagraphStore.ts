@@ -1,9 +1,9 @@
-import one from 'compromise/one';
+import three from 'compromise';
 import { makeAutoObservable } from 'mobx';
 
 import { terms, TermsStore } from '@/stores/TermsStore.ts';
 import { TokenStore } from '@/stores/TokenStore.ts';
-import { getUniqueWords } from '@/utils/compromise.ts';
+import { Compromise } from '@/utils/compromise.ts';
 
 export class ParagraphStore {
   static of(paragraph: string) {
@@ -18,19 +18,15 @@ export class ParagraphStore {
   }
 
   get view() {
-    return one(this.paragraph);
+    return three(this.paragraph);
   }
 
   get tokens(): TokenStore[] {
-    return this.view
-      .json()
-      .flatMap((_) => _.terms)
-      .filter((_) => _.text !== '')
-      .map(TokenStore.of);
+    return Compromise.getTokens(this.view).map(TokenStore.of);
   }
 
   get words() {
-    return getUniqueWords(this.view);
+    return Compromise.getUniqueWords(this.view);
   }
 
   get level() {
@@ -49,7 +45,7 @@ export class ParagraphStore {
 
       if (!wlevel) continue;
 
-      if (level < wlevel) level = wlevel;
+      if (level < wlevel && wlevel !== 'ignored') level = wlevel;
     }
 
     return level;

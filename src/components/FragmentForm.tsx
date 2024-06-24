@@ -1,3 +1,5 @@
+import cx from 'clsx';
+import { observer } from 'mobx-react-lite';
 import { FormEvent, useMemo } from 'react';
 
 import { FragmentFormFields } from '@/components/FragmentFormFields.tsx';
@@ -9,7 +11,7 @@ interface FragmentFormProps {
   onSubmit: (source: Lexi.Source) => void;
 }
 
-export const FragmentForm = ({ onSubmit, source, fragment }: FragmentFormProps) => {
+export const FragmentForm = observer(({ onSubmit, source, fragment }: FragmentFormProps) => {
   const form = useMemo(() => new FragmentFormStore(fragment), [fragment]);
 
   return (
@@ -26,9 +28,7 @@ export const FragmentForm = ({ onSubmit, source, fragment }: FragmentFormProps) 
             <span className="lexi-h1">Edit Fragment</span>
             <small className="ml-2">inside a source "{source.title}"</small>
           </h1>
-          <button type="submit" className="min-w-40 rounded border bg-slate-300 p-1">
-            Update
-          </button>
+          <SubmitButton form={form} />
         </div>
       </div>
       <div className="bg-slate-100 p-4">
@@ -36,4 +36,18 @@ export const FragmentForm = ({ onSubmit, source, fragment }: FragmentFormProps) 
       </div>
     </form>
   );
-};
+});
+
+const SubmitButton = observer(({ form }: { form: FragmentFormStore }) => {
+  return (
+    <button
+      disabled={form.isCalculating}
+      type="submit"
+      className={cx('min-w-40 rounded border bg-slate-300 p-1', {
+        'opacity-75': form.isCalculating,
+      })}
+    >
+      {form.isCalculating ? 'Calculating...' : 'Update'}
+    </button>
+  );
+});

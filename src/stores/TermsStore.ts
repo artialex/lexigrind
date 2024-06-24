@@ -1,40 +1,8 @@
 import { groupBy } from 'lodash';
-import { makeAutoObservable, reaction, runInAction } from 'mobx';
+import { makeAutoObservable, runInAction } from 'mobx';
 
-import { getAllTerms, putTerm } from '@/persistence/terms.db.ts';
-
-export class TermStore {
-  id: string;
-  notes? = '';
-  level: Lexi.TermLevel = 'unidentified';
-
-  constructor(term: Lexi.Term) {
-    makeAutoObservable(this);
-
-    this.id = term.id;
-    this.level = term.level;
-    this.notes = term.notes;
-
-    reaction(() => this.level, this.persist);
-    reaction(() => this.notes, this.persist);
-  }
-
-  persist = () => {
-    void putTerm({
-      id: this.id,
-      level: this.level,
-      notes: this.notes,
-    });
-  };
-
-  setLevel(level: Lexi.TermLevel) {
-    this.level = level;
-  }
-
-  setNotes(notes: string) {
-    this.notes = notes;
-  }
-}
+import { getAllTerms } from '@/persistence/terms.pouch.ts';
+import { TermStore } from '@/stores/TermStore.ts';
 
 export class TermsStore {
   map: Map<string, TermStore> = new Map();
@@ -50,7 +18,7 @@ export class TermsStore {
     });
   }
 
-  // fixme
+  // FIXME: better method?
   get of() {
     return groupBy([...this.map.values()], (term) => {
       return term?.level || 'unidentified';
@@ -67,7 +35,7 @@ export class TermsStore {
     this.selected = selected;
 
     if (!this.map.has(selected)) {
-      this.map.set(selected, new TermStore({ id: selected, level: 'unidentified' }));
+      this.map.set(selected, TermStore.of({ id: selected, level: 'unidentified' }));
     }
   }
 }

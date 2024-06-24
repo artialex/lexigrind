@@ -1,4 +1,4 @@
-import { Menu, Star } from 'react-feather';
+import { Menu } from 'react-feather';
 import { Link } from 'react-router-dom';
 
 import { TextStatsView } from '@/components/TextStatsView.tsx';
@@ -18,9 +18,9 @@ export const SourcesView = () => {
   return (
     <div>
       {data.sources.map((source) => (
-        <div key={source.id} className="border-b border-slate-200 pb-2">
+        <div key={source.id} className="pb-2">
           <div className="my-1 flex items-center gap-2">
-            <Star className="basis-[24px]" size="16" />
+            {/*<Star className="basis-[24px]" size="16" />*/}
             <Link
               to={`/sources/${source.id}`}
               className="basis-full truncate text-blue-500 transition hover:text-blue-400"
@@ -32,7 +32,11 @@ export const SourcesView = () => {
               <Menu size="16" />
             </Link>
           </div>
-          <TextStatsView stats={source.stats} />
+          <TextStatsView stats={source.stats}>
+            <div className="w-12" title="Chapters">
+              {source.fragments.length || '...'}
+            </div>
+          </TextStatsView>
         </div>
       ))}
     </div>

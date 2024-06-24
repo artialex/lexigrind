@@ -32,35 +32,3 @@ export const FragmentView = observer((props: { fragment: Lexi.Fragment }) => {
     </div>
   );
 });
-
-/*useEffect(() => {
-  const mapped = fragment.paragraphs.map((paragraph) => {
-    const json = compromiseThree(paragraph).json();
-    const words = (
-      compromiseThree(paragraph).terms().unique().toLowerCase().json() as Array<{
-        terms: Array<{ text: string; tags: string[] }>;
-      }>
-    )
-      .flatMap((_) =>
-        _.terms.map((_) => {
-          const found = _.text.match(/['’]/);
-
-          if (_.tags.includes('Possessive') && found) {
-            const [text] = _.text.split(/['’]/);
-            return text;
-          }
-          return _.text;
-        }),
-      )
-      .filter(Boolean);
-
-    const terms = json.flatMap((_: { terms: string[] }) => _.terms);
-
-    return {
-      terms,
-      words,
-    };
-  });
-
-  // paragraphs.set(mapped);
-}, [fragment])*/

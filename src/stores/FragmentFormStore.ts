@@ -6,9 +6,14 @@ import { Texts } from '@/services/Texts.service.ts';
 import { TextStatsStore } from '@/stores/TextStatsStore.ts';
 
 export class FragmentFormStore {
+  static of(fragment?: Lexi.Fragment) {
+    return new FragmentFormStore(fragment);
+  }
+
   title = '';
   content = '';
   stats = new TextStatsStore();
+  isCalculating = false;
 
   constructor(private fragment?: Lexi.Fragment) {
     makeAutoObservable(this);
@@ -27,11 +32,13 @@ export class FragmentFormStore {
   setContent(content: string) {
     this.content = content;
 
+    this.isCalculating = true;
     this.updateStats();
   }
 
   setStats(stats: Lexi.TextStats) {
     this.stats.replace(stats);
+    this.isCalculating = false;
   }
 
   updateStats = debounce(async () => {

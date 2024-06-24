@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import { Menu, Star } from 'react-feather';
+import { Menu } from 'react-feather';
 import { Link, useParams } from 'react-router-dom';
 
 import { TextStatsView } from '@/components/TextStatsView.tsx';
@@ -18,9 +18,9 @@ export const FragmentsView = observer<FragmentsViewProps>(({ fragments }) => {
   return (
     <div>
       {fragments.map((fragment) => (
-        <div key={fragment.id} className="border-b border-slate-200 pb-2">
+        <div key={fragment.id} className="pb-2">
           <div className="my-1 flex items-center gap-2">
-            <Star className="basis-[24px]" size="16" />
+            {/*<Star className="basis-[24px]" size="16" />*/}
             <Link
               to={`/sources/${params.sourceId}/fragments/${fragment.id}`}
               className="basis-full truncate text-blue-500 transition hover:text-blue-400"

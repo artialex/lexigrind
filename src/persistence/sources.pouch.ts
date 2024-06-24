@@ -1,8 +1,6 @@
 import { merge } from 'lodash';
 import PouchDB from 'pouchdb-browser';
 
-import { Lexi } from '@/types';
-
 const db = new PouchDB('sources', {
   revs_limit: 1,
 });
@@ -13,6 +11,16 @@ interface PaginationOptions {
 }
 
 type DBSource = { source: Lexi.Source };
+
+export async function bulkInsert(sources: Lexi.Source[]) {
+  await db.destroy();
+  await db.bulkDocs<DBSource>(
+    sources.map((source) => ({
+      _id: source.id,
+      source,
+    })),
+  );
+}
 
 export async function getSources(options?: PaginationOptions) {
   const response = await db.allDocs<DBSource>({

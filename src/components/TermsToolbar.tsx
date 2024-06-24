@@ -1,17 +1,16 @@
 import { ChangeEvent, useRef } from 'react';
-import { Download, Plus, Upload } from 'react-feather';
-import { Link } from 'react-router-dom';
+import { Download, Upload } from 'react-feather';
 
 import { Subheader } from '@/components/Subheader.tsx';
-import { bulkInsert, getSources } from '@/persistence/sources.pouch.ts';
+import { getAllTerms, upsertMany } from '@/persistence/terms.pouch.ts';
 import { Files } from '@/utils/files.ts';
 
-export const SourcesToolbar = () => {
+export const TermsToolbar = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const handleExport = async () => {
-    const data = await getSources();
+    const data = await getAllTerms();
 
-    Files.download(JSON.stringify(data.sources), 'sources.json');
+    Files.download(JSON.stringify(data), 'terms.json');
   };
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -19,7 +18,7 @@ export const SourcesToolbar = () => {
 
     Files.upload(file, (result) => {
       if (result) {
-        void bulkInsert(JSON.parse(result));
+        void upsertMany(JSON.parse(result));
       }
     });
   };
@@ -30,11 +29,6 @@ export const SourcesToolbar = () => {
 
   return (
     <Subheader>
-      <Link className="lexi-button" to="/sources/new">
-        <Plus size="14" />
-        Add new source
-      </Link>
-
       <div className="ml-auto flex gap-2">
         <button className="lexi-button" onClick={handleExport}>
           <Download size="14" />

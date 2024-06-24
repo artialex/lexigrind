@@ -6,11 +6,15 @@ import { FragmentFormStore } from '@/stores/FragmentFormStore.ts';
 import { TextStatsStore } from '@/stores/TextStatsStore.ts';
 
 export class SourceFormStore {
+  static of(source?: Lexi.Source) {
+    return new SourceFormStore(source);
+  }
+
   title = '';
   author = '';
   tags = [];
 
-  fragments: FragmentFormStore[] = [];
+  fragments: FragmentFormStore[] = [FragmentFormStore.of()];
 
   selected = 0;
 
@@ -22,7 +26,7 @@ export class SourceFormStore {
     if (source) {
       this.title = source.title;
       this.author = source.author;
-      this.fragments = source.fragments.map((_) => new FragmentFormStore(_));
+      this.fragments = source.fragments.map(FragmentFormStore.of);
       this.stats.replace(source.stats);
     }
   }
@@ -61,5 +65,9 @@ export class SourceFormStore {
       fragments,
       stats,
     };
+  }
+
+  get isCalculating() {
+    return this.fragments?.some((_) => _.isCalculating) ?? false;
   }
 }

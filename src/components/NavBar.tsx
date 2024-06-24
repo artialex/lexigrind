@@ -1,6 +1,5 @@
 import cx from 'clsx';
 import { observer } from 'mobx-react-lite';
-import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
 import { levelKeys } from '@/constants/levels.ts';
@@ -24,25 +23,22 @@ const Summary = observer(() => {
   );
 });
 
-export function NavBar() {
+export const NavBar = () => {
   return (
-    <Fragment>
-      <nav className="sticky top-0 z-50 flex h-8 w-full justify-between border-b border-b-slate-300 bg-slate-100 px-4">
-        <ul className="flex items-center gap-2 p-1 ">
-          <li>
-            <Link className="lexi-button" to={'/sources'}>
-              Sources
-            </Link>
-          </li>
-          <li>
-            <Link className="lexi-button" to={'/terms'}>
-              Terms
-            </Link>
-          </li>
-        </ul>
-        <Summary />
-      </nav>
-      {/*<Terms />*/}
-    </Fragment>
+    <nav className="sticky top-0 z-50 flex h-8 w-full justify-between border-b border-b-slate-300 bg-slate-100 px-4">
+      <ul className="flex items-center gap-2 p-1 ">
+        <li>
+          <Link className="lexi-button" to={'/sources'}>
+            Sources
+          </Link>
+        </li>
+        <li>
+          <Link className="lexi-button" to={'/terms'}>
+            Terms
+          </Link>
+        </li>
+      </ul>
+      <Summary />
+    </nav>
   );
-}
+};

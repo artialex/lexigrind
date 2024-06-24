@@ -14,7 +14,7 @@ interface SourceFormProps {
 }
 
 export const SourceForm = observer(({ onSubmit, source, titleText, ctaText }: SourceFormProps) => {
-  const form = useMemo(() => new SourceFormStore(source), [source]);
+  const form = useMemo(() => SourceFormStore.of(source), [source]);
 
   return (
     <form
@@ -26,7 +26,7 @@ export const SourceForm = observer(({ onSubmit, source, titleText, ctaText }: So
       }}
     >
       <div className="m-4">
-        <SourceFormHeader titleText={titleText} ctaText={ctaText} />
+        <SourceFormHeader form={form} titleText={titleText} ctaText={ctaText} />
         <SourceFormFields form={form} />
       </div>
 
@@ -92,16 +92,26 @@ const AddFragmentButton = observer(({ form }: { form: SourceFormStore }) => {
   );
 });
 
-const SourceFormHeader = (props: Pick<SourceFormProps, 'titleText' | 'ctaText'>) => {
+interface SourceFormHeaderProps extends Pick<SourceFormProps, 'titleText' | 'ctaText'> {
+  form: SourceFormStore;
+}
+
+const SourceFormHeader = observer(({ form, ctaText, titleText }: SourceFormHeaderProps) => {
   return (
     <header className="flex  justify-between">
-      <h1 className="lexi-h1">{props.titleText}</h1>
-      <button type="submit" className="min-w-40 rounded border bg-slate-300 p-1">
-        {props.ctaText}
+      <h1 className="lexi-h1">{titleText}</h1>
+      <button
+        disabled={form.isCalculating}
+        type="submit"
+        className={cx('min-w-40 rounded border bg-slate-300 p-1', {
+          'opacity-75': form.isCalculating,
+        })}
+      >
+        {form.isCalculating ? 'Calculating...' : ctaText}
       </button>
     </header>
   );
-};
+});
 
 const SourceFormFields = observer(({ form }: { form: SourceFormStore }) => {
   return (
