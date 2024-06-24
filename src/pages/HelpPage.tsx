@@ -1,7 +1,10 @@
-export function MainPage() {
+export function HelpPage() {
   return (
     <main className="m-4">
-      <h1 className="text-xl my-2">Help</h1>
+      <h1 className="lexi-h1">Home page</h1>
+      <div>Select sources above ^</div>
+
+      {/*<h1 className="text-xl my-2">Help</h1>
       <p className="my-2">Here is my approach to learning new words</p>
       <h2 className="text-lg font-semibold mx-2 mb-1">Active vocabulary</h2>
       <p>
@@ -77,7 +80,7 @@ export function MainPage() {
         <li>Vocabulary.com</li>
         <li>Youglish</li>
         <li>Refold</li>
-      </ul>
+      </ul>*/}
     </main>
   );
 }

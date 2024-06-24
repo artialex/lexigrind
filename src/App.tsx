@@ -1,7 +1,8 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 // import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import {
-  createBrowserRouter,
+  // createBrowserRouter,
+  createHashRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
@@ -9,7 +10,7 @@ import {
 
 import { FragmentEditPage } from '@/pages/FragmentEditPage.tsx';
 import { FragmentPage } from '@/pages/FragmentPage.tsx';
-import { MainPage } from '@/pages/MainPage.tsx';
+import { HelpPage } from '@/pages/HelpPage.tsx';
 import { SourceAddPage } from '@/pages/SourceAddPage.tsx';
 import { SourceEditPage } from '@/pages/SourceEditPage.tsx';
 import { SourcePage } from '@/pages/SourcePage.tsx';
@@ -21,7 +22,7 @@ import { PageLayout } from './PageLayout.tsx';
 
 const elements = createRoutesFromElements(
   <Route element={<PageLayout />}>
-    <Route path="/" element={<MainPage />} />
+    <Route path="/" element={<HelpPage />} />
 
     <Route path="/sources" element={<SourcesPage />} />
     <Route path="/sources/new" element={<SourceAddPage />} />
@@ -44,7 +45,7 @@ const client = new QueryClient();
 export function App() {
   return (
     <QueryClientProvider client={client}>
-      <RouterProvider router={createBrowserRouter(elements, { basename: '/lexigrind/' })} />
+      <RouterProvider router={createHashRouter(elements)} />
     </QueryClientProvider>
   );
 }

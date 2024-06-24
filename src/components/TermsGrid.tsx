@@ -9,10 +9,11 @@ export const TermsGrid = observer(() => (
     {levelKeys.map(
       (level) =>
         (terms.of[level] ?? []).length > 0 && (
-          <li className="w-1/6 ">
+          <li key={level} className="w-1/6 ">
             <ul className={cx(' p-2', {})}>
               {(terms.of[level] ?? []).map((term) => (
                 <li
+                  key={term.id}
                   className={cx('mb-1.5 rounded px-1', {
                     [`lexi-word-${level}`]: level,
                   })}

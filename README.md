@@ -15,6 +15,9 @@ An application in the style of [LWT](https://learning-with-texts.sourceforge.io/
 
 - Words
   - Marking words with levels from 0 to 5
+    - "0-5" keys set level of the words (also "W" marks as "0")
+    - "I" key sets the level to "ignored"
+    - "U" key sets the level to "unidentified"
   - Adding personal notes to words
 - Various stats of one's vocabulary
   - Source/Fragment stats
