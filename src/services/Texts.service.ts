@@ -2,6 +2,8 @@ import debug from 'debug';
 import { retext } from 'retext';
 import retextSmartypants from 'retext-smartypants';
 
+import { Compromise } from '@/utils/compromise.ts';
+
 import ThreeWorker from './Tokenizer/compromise/three.worker?worker';
 
 const processor = retext().use(retextSmartypants);
@@ -25,11 +27,18 @@ export class Texts {
   static async getTextStats(text: string): Promise<Lexi.TextStats> {
     return new Promise((resolve) => {
       const worker = new ThreeWorker();
-
+      const paragraphCount = text.split('\n\n').length;
       worker.postMessage(text);
 
       worker.onmessage = (e) => {
-        resolve(e.data);
+        const data = {
+          sentenceCount: Compromise.getSentenceCount(e.data),
+          wordCount: Compromise.getWordCount(e.data),
+          uniqueWords: Compromise.getUniqueWords(e.data),
+        };
+
+        resolve({ ...data, paragraphCount });
+
         trace('tokenize', 'ended');
         worker.terminate();
       };

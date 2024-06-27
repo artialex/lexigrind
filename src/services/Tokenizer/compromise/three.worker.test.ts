@@ -10,12 +10,10 @@ describe('three.worker', () => {
 
     const data = await new Promise((resolve) => {
       worker.onmessage = (e) => {
-        console.log('three.worker.test :: 13', e);
         resolve(e.data);
       };
     });
 
-    console.log('three.worker.test :: 21', data);
     expect(data).toBe('kek');
   });
 });
