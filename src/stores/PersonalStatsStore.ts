@@ -2,9 +2,13 @@ import { groupBy } from 'lodash';
 import { makeAutoObservable } from 'mobx';
 
 import { levelKeys } from '@/constants/levels.ts';
-import { TermsStore } from '@/stores/TermsStore.ts';
+import { terms, TermsStore } from '@/stores/TermsStore.ts';
 
-export class PersonalStats {
+export class PersonalStatsStore {
+  static of(words: string[]) {
+    return new PersonalStatsStore(words, terms);
+  }
+
   constructor(
     private words: string[],
     private terms: TermsStore,
@@ -12,15 +16,20 @@ export class PersonalStats {
     makeAutoObservable(this);
   }
 
+  // FIXME: this is incorrect
+  get uniqueWords() {
+    return [...new Set(this.words)];
+  }
+
   get of() {
-    return groupBy(this.words, (word) => {
+    return groupBy(this.uniqueWords, (word) => {
       return this.terms.map.get(word)?.level || 'unidentified';
     });
   }
 
   get percents() {
     return levelKeys.map((level) => {
-      return { level, percent: ((this.of[level]?.length ?? 0) / this.words.length) * 100 };
+      return { level, percent: ((this.of[level]?.length ?? 0) / this.uniqueWords.length) * 100 };
     });
   }
 }

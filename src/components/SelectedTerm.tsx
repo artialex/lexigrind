@@ -63,11 +63,11 @@ export const SelectedTerm = observer(() => {
           </label>
 
           <label className="flex flex-col gap-1 text-sm">
-            <span className="font-semibold">Description</span>
+            <span className="font-semibold">Notes</span>
             <textarea
               className="rounded border p-2 "
               rows={20}
-              placeholder="Description"
+              placeholder="Write down some notes about the word here"
               value={notes}
               onKeyDown={(e) => {
                 e.stopPropagation();

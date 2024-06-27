@@ -1,6 +1,10 @@
 import { makeAutoObservable } from 'mobx';
 
 export class TextStatsStore {
+  static of(stats?: Lexi.TextStats) {
+    return new TextStatsStore(stats);
+  }
+
   paragraphCount = 0;
   sentenceCount = 0;
   wordCount = 0;

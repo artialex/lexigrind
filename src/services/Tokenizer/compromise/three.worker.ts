@@ -1,35 +1,17 @@
-import { compromiseThree } from './three.ts';
+import three from 'compromise';
+
+import { Compromise } from '@/utils/compromise.ts';
 
 self.onmessage = (e) => {
-  const doc = compromiseThree(e.data);
+  const view = three(e.data);
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   const paragraphs = e.data.split('\n\n');
 
-  const uniqueWords = (
-    doc.terms().unique().toLowerCase().json() as Array<{
-      terms: Array<{ text: string; tags: string[] }>;
-    }>
-  )
-    .flatMap((_) =>
-      _.terms.map((_) => {
-        const found = _.text.match(/['’]/);
-
-        if (_.tags.includes('Possessive') && found) {
-          const [text] = _.text.split(/['’]/);
-          return text;
-        }
-        return _.text;
-      }),
-    )
-    .filter(Boolean);
-
   const data = {
-    // paragraphs,
     paragraphCount: paragraphs.length,
-    sentenceCount: doc.length,
-    wordCount: doc.wordCount(),
-    uniqueWords: uniqueWords,
-    uniqueWordCount: uniqueWords.length,
+    sentenceCount: Compromise.getSentenceCount(view),
+    wordCount: Compromise.getWordCount(view),
+    uniqueWords: Compromise.getUniqueWords(view),
   };
 
   self.postMessage(data);

@@ -81,15 +81,25 @@ body {
 }
 
 @layer utilities {
-  .asterisk {
+  .mark {
     position: relative;
   }
 
-  .asterisk::after {
+  .mark::after {
     position: absolute;
     opacity: 50%;
-    right: -5px;
+    right: -4px;
     top: -12px;
+    font-size: 80%;
+  }
+
+  .asterisk::after {
     content: '*';
+  }
+  .exclamation::after {
+    content: '!';
+  }
+  .question::after {
+    content: '?';
   }
 }

@@ -37,6 +37,8 @@ export class TermsStore {
     if (!this.map.has(selected)) {
       this.map.set(selected, TermStore.of({ id: selected, level: 'unidentified' }));
     }
+
+    void navigator.clipboard.writeText(this.selected);
   }
 }
 

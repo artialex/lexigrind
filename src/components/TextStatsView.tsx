@@ -3,11 +3,10 @@ import { observer } from 'mobx-react-lite';
 import { PropsWithChildren, useMemo } from 'react';
 
 import { levelKeys } from '@/constants/levels.ts';
-import { PersonalStats } from '@/stores/PersonalStatsStore.ts';
-import { terms } from '@/stores/TermsStore.ts';
+import { PersonalStatsStore } from '@/stores/PersonalStatsStore.ts';
 import { TextStatsStore } from '@/stores/TextStatsStore.ts';
 
-const Percentages = ({ stats }: { stats: PersonalStats }) => {
+const Percentages = ({ stats }: { stats: PersonalStatsStore }) => {
   return (
     <div className="z-30 mt-1 h-2 w-full  bg-slate-50">
       {stats.percents.map(({ level, percent }) => (
@@ -33,7 +32,7 @@ const Percentages = ({ stats }: { stats: PersonalStats }) => {
   );
 };
 
-const PersonalStatsView = observer(({ stats }: { stats: PersonalStats }) => {
+const PersonalStatsView = observer(({ stats }: { stats: PersonalStatsStore }) => {
   return (
     <>
       {levelKeys.map((level) => (
@@ -57,12 +56,17 @@ interface TextStatsViewProps extends PropsWithChildren {
 }
 
 export const TextStatsView = observer((props: TextStatsViewProps) => {
-  const stats = useMemo(() => new TextStatsStore(props.stats), [props.stats]);
-  const personal = useMemo(() => new PersonalStats(stats.uniqueWords, terms), [stats.uniqueWords]);
+  const stats = useMemo(() => TextStatsStore.of(props.stats), [props.stats]);
+  const personal = useMemo(() => PersonalStatsStore.of(stats.uniqueWords), [stats.uniqueWords]);
 
   return (
     <>
-      <div className="flex items-center gap-2 text-right  text-sm">
+      <div
+        className={cx('flex items-center gap-2 text-right text-sm', {
+          // 'bg-emerald-50': true,
+          'bg-amber-50': !personal.of['unidentified']?.length,
+        })}
+      >
         {props.children}
         <div className="w-12" title="Paragraphs">
           {stats.paragraphCount || '...'}

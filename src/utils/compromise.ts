@@ -42,7 +42,9 @@ export class Compromise {
       cur.post = apostrophe + possessive + cur.post;
       acc.push(cur);
     } else if (cur.text.includes('—')) {
-      acc[acc.length - 1].post += cur.text;
+      if (acc[acc.length - 1]?.post) {
+        acc[acc.length - 1].post += cur.text;
+      }
     } else {
       acc.push(cur);
     }
