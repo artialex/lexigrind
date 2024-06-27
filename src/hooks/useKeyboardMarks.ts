@@ -4,19 +4,31 @@ import { terms } from '@/stores/TermsStore.ts';
 
 export function useKeyboardMarks() {
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
-    if (!terms.selectedTerm) return;
-
-    if (e.key === 'w') {
-      terms.selectedTerm.setLevel('0');
-    }
-    if (e.key === 'u') {
-      terms.selectedTerm.setLevel('unidentified');
-    }
-    if (e.key === 'i') {
-      terms.selectedTerm.setLevel('ignored');
-    }
-    if (['0', '1', '2', '3', '4', '5'].includes(e.key)) {
-      terms.selectedTerm.setLevel(e.key as Lexi.TermLevel);
+    switch (e.code) {
+      case 'Digit0':
+      case 'Numpad0':
+      case 'KeyW':
+        return terms.selectedTerm?.setLevel('0');
+      case 'Digit1':
+      case 'Numpad1':
+        return terms.selectedTerm?.setLevel('1');
+      case 'Digit2':
+      case 'Numpad2':
+        return terms.selectedTerm?.setLevel('2');
+      case 'Digit3':
+      case 'Numpad3':
+        return terms.selectedTerm?.setLevel('3');
+      case 'Digit4':
+      case 'Numpad4':
+        return terms.selectedTerm?.setLevel('4');
+      case 'Digit5':
+      case 'Numpad5':
+        return terms.selectedTerm?.setLevel('5');
+      case 'KeyI':
+      case 'NumpadDecimal':
+        return terms.selectedTerm?.setLevel('ignored');
+      case 'KeyU':
+        return terms.selectedTerm?.setLevel('unidentified');
     }
   }, []);
 
