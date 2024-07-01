@@ -79,7 +79,7 @@ body {
 .lexi-word-0 {
   @apply bg-transparent text-slate-800 hover:bg-slate-50;
 
-  &.has-note {
+  &.cell.has-note {
     @apply border-slate-500;
   }
 }
@@ -87,7 +87,7 @@ body {
 .lexi-word-1 {
   @apply bg-emerald-50 text-emerald-800 hover:bg-emerald-200;
 
-  &.has-note {
+  &.cell.has-note {
     @apply border-emerald-300;
   }
 }
@@ -95,7 +95,7 @@ body {
 .lexi-word-2 {
   @apply bg-sky-100 text-sky-800 hover:bg-sky-200;
 
-  &.has-note {
+  &.cell.has-note {
     @apply border-sky-300;
   }
 }
@@ -103,7 +103,7 @@ body {
 .lexi-word-3 {
   @apply bg-amber-100 text-amber-800 hover:bg-amber-200;
 
-  &.has-note {
+  &.cell.has-note {
     @apply border-amber-300;
   }
 }
@@ -111,7 +111,7 @@ body {
 .lexi-word-4 {
   @apply bg-rose-100 text-rose-800 hover:bg-rose-200;
 
-  &.has-note {
+  &.cell.has-note {
     @apply border-rose-300;
   }
 }
@@ -119,7 +119,7 @@ body {
 .lexi-word-5 {
   @apply bg-lexi-5-light text-lexi-5-dark hover:opacity-50;
 
-  &.has-note {
+  &.cell.has-note {
     @apply border-fuchsia-300;
   }
 }
@@ -137,13 +137,13 @@ body {
     font-size: 80%;
   }
 
-  .has-note::after {
+  .mark.has-note::after {
     content: '*';
   }
-  .exclamation::after {
+  .mark.exclamation::after {
     content: '!';
   }
-  .question::after {
+  .mark.question::after {
     content: '?';
   }
 }

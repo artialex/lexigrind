@@ -24,7 +24,7 @@ export const TermGridCell = observer((props: TermGridCellProps) => {
     <li
       className={cx(' mb-1.5 flex cursor-pointer items-center truncate rounded px-1', {
         [`lexi-word-${term?.level}`]: term?.level,
-        'mark has-note': term?.notes,
+        'cell has-note': term?.notes,
       })}
       style={{
         // borderRightWidth: term?.notes?.length,

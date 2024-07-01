@@ -18,7 +18,7 @@ export const TermNotes = (props: { term: TermStore }) => {
   return (
     <textarea
       className="w-full rounded border bg-slate-50 p-2"
-      rows={20}
+      rows={10}
       placeholder="Write down some notes about the word here"
       value={value}
       onKeyDown={(e) => e.stopPropagation()}
