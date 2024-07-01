@@ -1,4 +1,4 @@
-import three from 'compromise/three';
+import three from 'compromise';
 
 import { Compromise } from '../../../utils/compromise.ts';
 

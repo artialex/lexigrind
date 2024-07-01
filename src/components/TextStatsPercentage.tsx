@@ -4,7 +4,13 @@ import { PersonalStatsStore } from '@/stores/PersonalStatsStore.ts';
 
 export const TextStatsPercentages = ({ stats }: { stats: PersonalStatsStore }) => {
   return (
-    <div className="z-30 mt-1 h-2 w-full  bg-slate-50">
+    <div
+      className="z-30 mt-1 h-2 w-full  bg-slate-50"
+      title={stats.percents
+        .filter(({ level }) => !isNaN(Number(level)))
+        .map(({ percent }) => `${percent.toFixed(1)}%`)
+        .join(', ')}
+    >
       {stats.percents.map(({ level, percent }) => (
         <div
           key={level}

@@ -34,7 +34,7 @@ export const TextStatsView = observer((props: TextStatsViewProps) => {
         <div className="lexi-cell" title="Sentences">
           {Numbers.format(stats.sentenceCount) || '...'}
         </div>
-        <div className="lexi-cell" title="Total words">
+        <div className="lexi-cell w-14" title="Total words">
           {Numbers.format(stats.wordCount) || '...'}
         </div>
         {props.path ? (

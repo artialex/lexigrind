@@ -22,8 +22,6 @@ const sortings = {
 type SortingOptions = keyof typeof sortings;
 
 export const TermsGrid = observer(({ terms }: TermsGridProps) => {
-  console.log('TermsGrid :: 22', terms);
-
   const [sort, setSort] = useState<SortingOptions>('alphabetically');
 
   const meaningfulLevels = useMemo(
