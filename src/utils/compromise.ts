@@ -1,8 +1,8 @@
-import one from 'compromise/one';
+import three from 'compromise/three';
 
 // FIXME: find these types in compromise?
 
-export type CompromiseView = ReturnType<typeof one>;
+export type CompromiseView = ReturnType<typeof three>;
 
 export type CompromiseTerm = { text: string; pre: string; post: string; tags: string[] };
 
@@ -32,6 +32,17 @@ export class Compromise {
    * FIXME: split into several functions?
    */
   private static resolveTokenizationInconsistencies(acc: CompromiseTerm[], cur: CompromiseTerm) {
+    if (cur.pre.includes('“') && cur.post.includes('”')) {
+      cur.tags.push('speech');
+    }
+
+    if (
+      (cur.pre.includes('“') || acc[acc.length - 1]?.tags.includes('speech')) &&
+      !acc[acc.length - 1]?.post.includes('”')
+    ) {
+      cur.tags.push('speech');
+    }
+
     if (cur.text === '') {
       acc[acc.length - 1].post += cur.post;
     } else if (cur.text.match(Compromise.POSSESSIVE) && cur.tags.includes('Possessive')) {

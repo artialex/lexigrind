@@ -11,6 +11,11 @@ An application in the style of [LWT](https://learning-with-texts.sourceforge.io/
 > to make it an Electron-based app, with a proper, proven database like SQLite or MongoDB,
 > which I intend to do in the future.
 
+### Why?
+
+I like to do programming stuff, I like to learn languages, and I like to read books.
+Here is where all three crisscross each other
+
 ### Features
 
 - Words
@@ -23,9 +28,18 @@ An application in the style of [LWT](https://learning-with-texts.sourceforge.io/
   - Source/Fragment stats
   - Calculated percentages of source/fragment
   - Calculated paragraph levels
+- Press "Z" for zen mode
 
 ### Screenshots
 
-![](docs/image-1.png)
-![](docs/image-2.png)
-![](docs/image-3.png)
+#### Sources
+
+![](docs/sources.png)
+
+#### Source Terms
+
+![](docs/source-terms.png)
+
+#### Fragment View
+
+![](docs/fragment-view.png)

@@ -8,8 +8,8 @@ export const levels = {
   '4': 'legendary',
   '5': 'mythic',
 
-  ignored: 'ignored',
   unidentified: 'unidentified',
+  ignored: 'ignored',
 } as const;
 
 export type Level = keyof typeof levels;

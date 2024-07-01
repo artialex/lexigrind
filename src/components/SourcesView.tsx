@@ -32,8 +32,8 @@ export const SourcesView = () => {
               <Menu size="16" />
             </Link>
           </div>
-          <TextStatsView stats={source.stats}>
-            <div className="w-12" title="Chapters">
+          <TextStatsView stats={source.stats} path={`/sources/${source.id}`}>
+            <div className="lexi-cell" title="Chapters">
               {source.fragments.length || '...'}
             </div>
           </TextStatsView>

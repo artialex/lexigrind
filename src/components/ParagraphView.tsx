@@ -11,7 +11,7 @@ export const ParagraphView = observer(({ paragraph }: { paragraph: ParagraphStor
       <div className="flex items-start justify-between gap-2">
         <p
           className={cx(
-            'relative max-w-[900px] pl-2 indent-6 font-serif text-2xl before:absolute before:inset-0  before:-left-2 before:h-full before:w-1 before:rounded ',
+            'relative max-w-[900px] pl-2 indent-6 font-serif text-2xl before:absolute before:inset-0 before:-left-2 before:h-full before:w-1 before:rounded',
             {
               'before:bg-transparent': paragraph.level === 'unidentified',
               'before:bg-emerald-100': paragraph.level === '0' || paragraph.level === '1',

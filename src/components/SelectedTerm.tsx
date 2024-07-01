@@ -1,8 +1,7 @@
 import cx from 'clsx';
-import { debounce } from 'lodash';
 import { observer } from 'mobx-react-lite';
-import { useCallback, useEffect, useState } from 'react';
 
+import { TermNotes } from '@/components/TermNotes.tsx';
 import { levels } from '@/constants/levels.ts';
 import { Texts } from '@/services/Texts.service.ts';
 import { terms } from '@/stores/TermsStore.ts';
@@ -10,19 +9,6 @@ import { terms } from '@/stores/TermsStore.ts';
 import TermLevel = Lexi.TermLevel;
 
 export const SelectedTerm = observer(() => {
-  const [notes, setNotes] = useState(() => terms.selectedTerm?.notes);
-
-  useEffect(() => {
-    setNotes(terms.selectedTerm?.notes ?? '');
-  }, [terms.selected]);
-
-  const handleNotesChange = useCallback(
-    debounce((value) => {
-      terms.selectedTerm?.setNotes(value);
-    }, 500),
-    [],
-  );
-
   return (
     <div className="flex w-[260px] flex-col gap-2">
       <h2 className="font-semibold uppercase">Selected Term</h2>
@@ -64,6 +50,9 @@ export const SelectedTerm = observer(() => {
 
           <label className="flex flex-col gap-1 text-sm">
             <span className="font-semibold">Notes</span>
+
+            <TermNotes term={terms.selectedTerm!} />
+            {/*
             <textarea
               className="rounded border p-2 "
               rows={20}
@@ -81,6 +70,7 @@ export const SelectedTerm = observer(() => {
                 handleNotesChange(e.target.value);
               }}
             />
+*/}
           </label>
         </div>
       ) : (

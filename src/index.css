@@ -19,12 +19,26 @@ body {
 }
 
 @layer components {
+  .lexi-cell {
+    @apply w-12 rounded px-1 text-right text-sm transition hover:opacity-50;
+  }
+
   .lexi-button {
     @apply inline-flex items-center gap-1.5 rounded px-2 py-0.5 text-sm hover:bg-slate-100;
   }
 
   .lexi-button.blue {
     @apply border border-blue-300 bg-blue-100 text-blue-500 hover:bg-blue-200;
+  }
+
+  /* FIXME: Less tuning */
+  .lexi-text-stats-view {
+    .lexi-text-stats-view-item {
+      order: 1;
+    }
+    .lexi-word-unidentified {
+      order: 0;
+    }
   }
 }
 
@@ -40,12 +54,14 @@ body {
   @apply rounded border border-slate-300 px-2 py-1;
 }
 
+/*
 .lexi-p {
-  @apply mb-4 text-slate-600;
+  @apply mb-4 text-slate-200;
 
   word-spacing: -0.1rem;
   line-height: 2.2rem;
 }
+*/
 
 .lexi-word-unidentified {
   @apply cursor-pointer rounded bg-slate-100 px-0.5 text-slate-600 transition hover:bg-slate-200;
@@ -55,29 +71,57 @@ body {
   @apply border border-dashed border-red-400 text-slate-800;
 }
 
+.lexi-speech {
+  @apply font-bold;
+}
+
 .lexi-word-ignored,
 .lexi-word-0 {
   @apply bg-transparent text-slate-800 hover:bg-slate-50;
+
+  &.has-note {
+    @apply border-slate-500;
+  }
 }
 
 .lexi-word-1 {
   @apply bg-emerald-50 text-emerald-800 hover:bg-emerald-200;
+
+  &.has-note {
+    @apply border-emerald-300;
+  }
 }
 
 .lexi-word-2 {
   @apply bg-sky-100 text-sky-800 hover:bg-sky-200;
+
+  &.has-note {
+    @apply border-sky-300;
+  }
 }
 
 .lexi-word-3 {
   @apply bg-amber-100 text-amber-800 hover:bg-amber-200;
+
+  &.has-note {
+    @apply border-amber-300;
+  }
 }
 
 .lexi-word-4 {
   @apply bg-rose-100 text-rose-800 hover:bg-rose-200;
+
+  &.has-note {
+    @apply border-rose-300;
+  }
 }
 
 .lexi-word-5 {
   @apply bg-lexi-5-light text-lexi-5-dark hover:opacity-50;
+
+  &.has-note {
+    @apply border-fuchsia-300;
+  }
 }
 
 @layer utilities {
@@ -93,7 +137,7 @@ body {
     font-size: 80%;
   }
 
-  .asterisk::after {
+  .has-note::after {
     content: '*';
   }
   .exclamation::after {

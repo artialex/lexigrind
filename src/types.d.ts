@@ -49,5 +49,5 @@ declare module Lexi {
     stats: Lexi.TextStats;
   }
 
-  type RouterParams = Record<'sourceId' | 'fragmentId', string>;
+  type RouterParams = Record<'sourceId' | 'fragmentId' | 'termId', string>;
 }

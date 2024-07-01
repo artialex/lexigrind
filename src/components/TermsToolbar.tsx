@@ -1,5 +1,6 @@
 import { ChangeEvent, useRef } from 'react';
 import { Download, Upload } from 'react-feather';
+import { Link } from 'react-router-dom';
 
 import { Subheader } from '@/components/Subheader.tsx';
 import { getAllTerms, upsertMany } from '@/persistence/terms.pouch.ts';
@@ -29,6 +30,9 @@ export const TermsToolbar = () => {
 
   return (
     <Subheader>
+      <Link to="/terms/ignored" className="lexi-button">
+        Ignored terms
+      </Link>
       <div className="ml-auto flex gap-2">
         <button className="lexi-button" onClick={handleExport}>
           <Download size="14" />

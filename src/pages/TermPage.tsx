@@ -1,20 +1,18 @@
-export const TermPage = () => {
-  // const params = useParams();
+import { observer } from 'mobx-react-lite';
+import { useParams } from 'react-router-dom';
 
-  // const term = terms.map.get(params.termId);
+import { TermView } from '@/components/TermView';
 
-  // if (!term) {
-  //   return <div>Loading</div>;
-  // }
+export const TermPage = observer(() => {
+  const params = useParams<Lexi.RouterParams>();
 
-  // if (!terms.map.has(params.termId)) {
-  //   return <div>No such term</div>;
-  // }
+  if (!params.termId) {
+    return <div>Loading</div>;
+  }
 
   return (
     <div className="m-4 flex gap-4">
-      Term Page
-      {/*{JSON.stringify(term)}*/}
+      <TermView term={params.termId} />
     </div>
   );
-};
+});

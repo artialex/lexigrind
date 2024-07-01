@@ -21,9 +21,13 @@ export class PersonalStatsStore {
     return [...new Set(this.words)];
   }
 
+  get innerTerms() {
+    return this.uniqueWords.map((_) => this.terms.map.get(_)!);
+  }
+
   get of() {
-    return groupBy(this.uniqueWords, (word) => {
-      return this.terms.map.get(word)?.level || 'unidentified';
+    return groupBy(this.innerTerms, (term) => {
+      return term?.level || 'unidentified';
     });
   }
 

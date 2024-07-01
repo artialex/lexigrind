@@ -9,6 +9,8 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "jest form",
+    "cosmos": "cosmos",
+    "cosmos-export": "cosmos-export",
     "format": "prettier src --write"
   },
   "prettier": {
@@ -69,6 +71,8 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "postcss": "^8.4.38",
     "prettier-plugin-tailwindcss": "^0.5.14",
+    "react-cosmos": "^6.1.1",
+    "react-cosmos-plugin-vite": "^6.1.1",
     "tailwindcss": "^3.4.3",
     "ts-jest": "^29.1.5",
     "typescript": "^5.2.2",

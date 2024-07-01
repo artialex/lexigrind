@@ -1,20 +1,15 @@
-import { ArrowLeft } from 'react-feather';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
+import { BackLink } from '@/components/BackLink.tsx';
 import { Subheader } from '@/components/Subheader.tsx';
 import { TextStatsView } from '@/components/TextStatsView.tsx';
 
 export const FragmentToolbar = ({ fragment }: { fragment: Lexi.Fragment }) => {
   const params = useParams<Lexi.RouterParams>();
+
   return (
     <Subheader>
-      <Link
-        to={`/sources/${params.sourceId}`}
-        className="flex items-center gap-2 whitespace-nowrap text-sm"
-      >
-        <ArrowLeft size="16" />
-        Back to all chapters
-      </Link>
+      <BackLink to={`/sources/${params.sourceId}`} text="Back to all chapters" />
       <h1 className="inline truncate whitespace-nowrap text-center">{fragment.title}</h1>
       {/*
       <div className="mr-auto flex gap-3">

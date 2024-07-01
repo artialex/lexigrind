@@ -6,15 +6,20 @@ import { TokenStore } from '@/stores/TokenStore.ts';
 
 export const TokenView = observer(({ token }: { token: TokenStore }) => {
   return (
-    <span>
+    <span
+      className={cx({
+        'lexi-speech': token.token?.tags.includes('speech'),
+      })}
+    >
       {token.token?.pre}
+
       <span
         className={cx(
           'lexi-word-unidentified whitespace-nowrap border border-dashed border-transparent',
           {
             [`lexi-word-${token.term?.level}`]: token.term?.level,
             '!border-slate-500': token.normalized === terms.selected,
-            'mark asterisk': token.term?.notes,
+            'mark has-note': token.term?.notes,
             'mark exclamation': token.term?.notes?.startsWith('!'),
             'mark question': token.term?.notes?.startsWith('?'),
           },

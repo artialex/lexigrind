@@ -16,7 +16,7 @@ export const FragmentsView = observer<FragmentsViewProps>(({ fragments }) => {
   }
 
   return (
-    <div>
+    <div className="pb-20">
       {fragments.map((fragment) => (
         <div key={fragment.id} className="pb-2">
           <div className="my-1 flex items-center gap-2">
@@ -34,7 +34,10 @@ export const FragmentsView = observer<FragmentsViewProps>(({ fragments }) => {
               <Menu size="16" />
             </Link>
           </div>
-          <TextStatsView stats={fragment.stats} />
+          <TextStatsView
+            stats={fragment.stats}
+            path={`/sources/${params.sourceId}/fragments/${fragment.id}`}
+          />
         </div>
       ))}
     </div>
