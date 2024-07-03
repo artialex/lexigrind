@@ -98,7 +98,7 @@ interface SourceFormHeaderProps extends Pick<SourceFormProps, 'titleText' | 'cta
 
 const SourceFormHeader = observer(({ form, ctaText, titleText }: SourceFormHeaderProps) => {
   return (
-    <header className="flex  justify-between">
+    <header className="flex justify-between">
       <h1 className="lexi-h1">{titleText}</h1>
       <button
         disabled={form.isCalculating}

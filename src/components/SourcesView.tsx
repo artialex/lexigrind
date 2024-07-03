@@ -16,9 +16,9 @@ export const SourcesView = () => {
   }
 
   return (
-    <div>
+    <ul>
       {data.sources.map((source) => (
-        <div key={source.id} className="pb-2">
+        <li key={source.id} className="pb-2">
           <div className="my-1 flex items-center gap-2">
             {/*<Star className="basis-[24px]" size="16" />*/}
             <Link
@@ -37,8 +37,8 @@ export const SourcesView = () => {
               {source.fragments.length || '...'}
             </div>
           </TextStatsView>
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };

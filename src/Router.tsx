@@ -5,6 +5,10 @@ import { FragmentEditPage } from '@/pages/FragmentEditPage.tsx';
 import { FragmentPage } from '@/pages/FragmentPage.tsx';
 import { FragmentTermsPage } from '@/pages/FragmentTermsPage.tsx';
 import { HelpPage } from '@/pages/HelpPage.tsx';
+import { NoteAddPage } from '@/pages/NoteAddPage.tsx';
+import { NoteEditPage } from '@/pages/NoteEditPage.tsx';
+import { NotePage } from '@/pages/NotePage.tsx';
+import { NotesPage } from '@/pages/NotesPage.tsx';
 import { SourceAddPage } from '@/pages/SourceAddPage.tsx';
 import { SourceEditPage } from '@/pages/SourceEditPage.tsx';
 import { SourcePage } from '@/pages/SourcePage.tsx';
@@ -36,9 +40,16 @@ export const Router = (
       element={<FragmentTermsPage />}
     />
 
+    {/* Terms */}
     <Route path="/terms" element={<TermsPage />} />
     <Route path="/terms/ignored" element={<TermsIgnoredPage />} />
     <Route path="/terms/term/:termId" element={<TermPage />} />
+
+    {/* Notes */}
+    <Route path="/notes" element={<NotesPage />} />
+    <Route path="/notes/new" element={<NoteAddPage />} />
+    <Route path="/notes/:noteId" element={<NotePage />} />
+    <Route path="/notes/:noteId/edit" element={<NoteEditPage />} />
   </Route>
 );
 

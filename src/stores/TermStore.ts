@@ -9,6 +9,7 @@ export class TermStore {
 
   id: string;
   notes? = '';
+  sharedNotes: Set<string>;
   level: Lexi.TermLevel = 'unidentified';
 
   constructor(term: Lexi.Term) {
@@ -17,6 +18,7 @@ export class TermStore {
     this.id = term.id;
     this.level = term.level;
     this.notes = term.notes;
+    this.sharedNotes = new Set(term.sharedNotes);
 
     reaction(() => this.level, this.persist);
     reaction(() => this.notes, this.persist);
@@ -27,8 +29,13 @@ export class TermStore {
       id: this.id,
       level: this.level,
       notes: this.notes,
+      sharedNotes: this.shared,
     });
   };
+
+  get shared() {
+    return [...this.sharedNotes];
+  }
 
   setLevel(level: Lexi.TermLevel) {
     this.level = level;
@@ -36,5 +43,17 @@ export class TermStore {
 
   setNotes(notes: string) {
     this.notes = notes;
+  }
+
+  addSharedNote(id: string) {
+    this.sharedNotes?.add(id);
+
+    this.persist();
+  }
+
+  removeSharedNote(id: string) {
+    this.sharedNotes?.delete(id);
+
+    this.persist();
   }
 }

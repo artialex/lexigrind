@@ -2,6 +2,7 @@ import cx from 'clsx';
 import { observer } from 'mobx-react-lite';
 
 import { TermNotes } from '@/components/TermNotes.tsx';
+import { TermSharedNotes } from '@/components/TermSharedNotes.tsx';
 import { levels } from '@/constants/levels.ts';
 import { Texts } from '@/services/Texts.service.ts';
 import { terms } from '@/stores/TermsStore.ts';
@@ -48,30 +49,8 @@ export const SelectedTerm = observer(() => {
             </div>
           </label>
 
-          <label className="flex flex-col gap-1 text-sm">
-            <span className="font-semibold">Notes</span>
-
-            <TermNotes term={terms.selectedTerm!} />
-            {/*
-            <textarea
-              className="rounded border p-2 "
-              rows={20}
-              placeholder="Write down some notes about the word here"
-              value={notes}
-              onKeyDown={(e) => {
-                e.stopPropagation();
-              }}
-              onChange={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-
-                setNotes(e.target.value);
-
-                handleNotesChange(e.target.value);
-              }}
-            />
-*/}
-          </label>
+          <TermNotes term={terms.selectedTerm!} />
+          <TermSharedNotes term={terms.selectedTerm!} />
         </div>
       ) : (
         <span>Not selected</span>

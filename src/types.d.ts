@@ -2,10 +2,16 @@ declare module Lexi {
   type TermLevel = '0' | '1' | '2' | '3' | '4' | '5' | 'ignored' | 'unidentified';
   type ParagraphLevel = '0' | '1' | '2' | '3' | '4' | '5' | 'unidentified';
 
+  interface SharedNote {
+    _id: string;
+    title: string;
+    text: string;
+  }
   interface Term {
     id: string;
     level: TermLevel;
     notes?: string;
+    sharedNotes?: string[];
   }
 
   interface Token {

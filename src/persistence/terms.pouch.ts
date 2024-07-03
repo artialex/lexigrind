@@ -1,4 +1,4 @@
-import { merge } from 'lodash';
+import { assign } from 'lodash';
 import PouchDB from 'pouchdb-browser';
 
 // FIXME: make class
@@ -34,8 +34,7 @@ export async function putTerm(term: Pick<Lexi.Term, 'id'> & Partial<Lexi.Term>) 
   return db
     .get<DBTerm>(term.id)
     .then((doc) => {
-      merge(doc.term, term);
-
+      assign(doc.term, term);
       db.put(doc);
     })
     .catch((err: PouchDB.Core.Error) => {

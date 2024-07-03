@@ -16,20 +16,26 @@ export const TermNotes = (props: { term: TermStore }) => {
   );
 
   return (
-    <textarea
-      className="w-full rounded border bg-slate-50 p-2"
-      rows={10}
-      placeholder="Write down some notes about the word here"
-      value={value}
-      onKeyDown={(e) => e.stopPropagation()}
-      onChange={(e) => {
-        e.stopPropagation();
-        e.preventDefault();
+    <div>
+      <label className="mb-2 flex flex-col gap-1 text-sm">
+        <span className="font-semibold">Notes</span>
 
-        setValue(e.target.value);
+        <textarea
+          className="w-full rounded border bg-slate-50 p-2"
+          rows={5}
+          placeholder="Write down some notes about the word here"
+          value={value}
+          onKeyDown={(e) => e.stopPropagation()}
+          onChange={(e) => {
+            e.stopPropagation();
+            e.preventDefault();
 
-        handleNotesChange(e.target.value);
-      }}
-    />
+            setValue(e.target.value);
+
+            handleNotesChange(e.target.value);
+          }}
+        />
+      </label>
+    </div>
   );
 };
