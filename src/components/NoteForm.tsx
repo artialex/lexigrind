@@ -3,6 +3,8 @@ import { nanoid } from 'nanoid';
 import { FormEvent, useState } from 'react';
 
 interface NoteFormProps {
+  titleText: string;
+  ctaText: string;
   values?: Lexi.SharedNote;
   onSubmit: (values: Lexi.SharedNote) => void;
 }
@@ -24,13 +26,13 @@ export const NoteForm = (props: NoteFormProps) => {
       }}
     >
       <header className="flex justify-between">
-        <h1 className="lexi-h1">Create note</h1>
+        <h1 className="lexi-h1"> {props.titleText}</h1>
         <button
           className={cx('min-w-40 rounded border bg-slate-300 p-1', {
             // 'opacity-75': form.isCalculating,
           })}
         >
-          Create
+          {props.ctaText}
         </button>
       </header>
       <label className="mb-1 flex flex-grow flex-col">

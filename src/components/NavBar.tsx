@@ -8,6 +8,7 @@ const links = {
   '/sources': 'Sources',
   '/terms': 'Terms',
   '/notes': 'Notes',
+  '/review': 'Review',
 };
 
 export const NavBar = observer(() => {

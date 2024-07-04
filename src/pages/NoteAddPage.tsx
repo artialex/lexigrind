@@ -13,6 +13,8 @@ export const NoteAddPage = () => {
         mutation.mutate(values);
         navigate('/notes');
       }}
+      titleText="Create note"
+      ctaText="Create"
     />
   );
 };

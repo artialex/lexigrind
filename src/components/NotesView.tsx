@@ -14,13 +14,13 @@ export const NotesView = () => {
     return <div>No sources added</div>;
   }
 
-  console.log('NotesView :: 17', data);
-
   return (
     <ul>
       {data.items.map((note) => (
-        <li key={note._id} className="my-1 flex items-center justify-between gap-2 pb-2">
-          {note._id} / {note.title} / {note.text}
+        <li key={note._id} className=" my-1 flex items-center justify-between gap-2 pb-2">
+          <h2>{note.title}</h2>
+
+          <p>{note.text}</p>
           <Link className="lexi-button px-1" to={`/notes/${note._id}/edit`}>
             <Menu size="16" />
           </Link>

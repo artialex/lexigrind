@@ -1,6 +1,7 @@
 import { Route } from 'react-router-dom';
 
 import { PageLayout } from '@/layouts/PageLayout.tsx';
+import { ReviewPage } from '@/modules/review/pages/ReviewPage.tsx';
 import { FragmentEditPage } from '@/pages/FragmentEditPage.tsx';
 import { FragmentPage } from '@/pages/FragmentPage.tsx';
 import { FragmentTermsPage } from '@/pages/FragmentTermsPage.tsx';
@@ -50,6 +51,9 @@ export const Router = (
     <Route path="/notes/new" element={<NoteAddPage />} />
     <Route path="/notes/:noteId" element={<NotePage />} />
     <Route path="/notes/:noteId/edit" element={<NoteEditPage />} />
+
+    {/* Review */}
+    <Route path="/review" element={<ReviewPage />} />
   </Route>
 );
 

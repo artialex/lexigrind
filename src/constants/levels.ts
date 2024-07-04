@@ -15,3 +15,5 @@ export const levels = {
 export type Level = keyof typeof levels;
 
 export const levelKeys = Object.keys(levels) as Array<Level>;
+
+export const meaningfulLevelKeys = levelKeys.filter((_) => _ !== 'ignored' && _ !== 'unidentified');

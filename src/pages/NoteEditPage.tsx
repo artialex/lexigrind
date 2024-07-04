@@ -21,6 +21,8 @@ export const NoteEditPage = () => {
         mutation.mutate(values);
         navigate('/notes');
       }}
+      titleText="Edit note"
+      ctaText="Update"
     />
   );
 };

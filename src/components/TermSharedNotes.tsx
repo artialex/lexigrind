@@ -27,7 +27,7 @@ export const TermSharedNotes = observer(({ term }: { term: TermStore }) => {
                   <X size="14" />
                 </button>
               </div>
-              <pre className="font-sans">{note?.text}</pre>
+              <pre className="whitespace-pre-wrap font-sans">{note?.text}</pre>
             </div>
           ))}
       </div>
