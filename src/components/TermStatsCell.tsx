@@ -11,17 +11,18 @@ interface TermStatsCellProps {
 }
 
 export const TermStatsCell = ({ level, terms, hideUnidentified }: TermStatsCellProps) => {
+  const className = cx('lexi-cell order-2 cursor-pointer rounded', {
+    [`lexi-word-${level}`]: level,
+    '!bg-transparent': level === 'unidentified' && !terms?.length,
+    'lexi-button-ignored': level === 'ignored',
+    'order-1': level === 'unidentified',
+    hidden: level === 'unidentified' && hideUnidentified,
+  });
+
+  const title = terms?.map((_) => (_ instanceof TermStore ? _.id : _)).join('\n') ?? 'No words';
+
   return (
-    <div
-      className={cx('lexi-cell order-2 cursor-pointer rounded', {
-        [`lexi-word-${level}`]: level,
-        '!bg-transparent': level === 'unidentified' && !terms?.length,
-        'lexi-button-ignored': level === 'ignored',
-        'order-1': level === 'unidentified',
-        hidden: hideUnidentified && level === 'unidentified',
-      })}
-      title={terms?.map((_) => (_ instanceof TermStore ? _.id : _)).join('\n') ?? 'No words'}
-    >
+    <div className={className} title={title}>
       {Numbers.format(terms?.length) ?? 0}
     </div>
   );

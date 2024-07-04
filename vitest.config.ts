@@ -8,7 +8,6 @@ if (process.env.SUPPORT_WORKERS) defineWebWorkers({ clone: 'ponyfill' });
 
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
-
   test: {
     setupFiles: ['@vitest/web-worker'],
   },

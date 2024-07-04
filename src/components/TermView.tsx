@@ -13,20 +13,17 @@ interface TermViewProps {
 export const TermView = observer((props: TermViewProps) => {
   const term = useMemo(() => terms.map.get(props.term), [props.term, terms.map]);
 
+  const className = cx('inline-block w-fit rounded px-4 text-2xl uppercase', {
+    [`lexi-word-${term?.level}`]: term?.level,
+  });
+
   if (!term) {
     return <div>Loading...</div>;
   }
 
   return (
     <div className="flex w-full flex-col gap-4">
-      <h1
-        className={cx('inline-block w-fit rounded px-4 text-2xl uppercase', {
-          [`lexi-word-${term?.level}`]: term?.level,
-        })}
-      >
-        {term?.id}
-      </h1>
-
+      <h1 className={className}>{term?.id}</h1>
       {!Number.isNaN(term.level) && (
         <div>
           <button
@@ -53,8 +50,6 @@ export const TermView = observer((props: TermViewProps) => {
           </button>
         </div>
       )}
-
-      {/*<TermFamily term={term} />*/}
       <TermNotes term={term} />
     </div>
   );

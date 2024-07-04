@@ -1,9 +1,9 @@
 import cx from 'clsx';
 import { observer } from 'mobx-react-lite';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 
 import { TermGridCell } from '@/components/TermGridCell.tsx';
-import { Level, levelKeys } from '@/constants/levels.ts';
+import { Level, meaningfulLevelKeys } from '@/constants/levels.ts';
 import { TermStore } from '@/stores/TermStore.ts';
 
 // FIXME: too complicated
@@ -24,11 +24,6 @@ type SortingOptions = keyof typeof sortings;
 export const TermsGrid = observer(({ terms }: TermsGridProps) => {
   const [sort, setSort] = useState<SortingOptions>('alphabetically');
 
-  const meaningfulLevels = useMemo(
-    () => levelKeys.filter((_) => _ !== 'ignored' && _ !== 'unidentified'),
-    [],
-  );
-
   return (
     <div className="mx-4 w-full">
       <button
@@ -40,11 +35,10 @@ export const TermsGrid = observer(({ terms }: TermsGridProps) => {
         Sorted: {sort === 'alphabetically' ? 'Alpabetically' : 'By Notes Length'}
       </button>
       <ul className="flex w-full gap-1">
-        {meaningfulLevels.map(
+        {meaningfulLevelKeys.map(
           (level) =>
             (terms.of[level] ?? []).length > 0 && (
               <li key={level} className="w-1/6 ">
-                {/*<div className="text-center font-bold">{terms.of[level]?.length}</div>*/}
                 <ul className={cx('', {})}>
                   {(terms.of[level] ?? []).sort(sortings[sort]).map((term) => (
                     <TermGridCell key={term.id} word={term.id} />

@@ -27,7 +27,6 @@ export const TermGridCell = observer((props: TermGridCellProps) => {
         'cell has-note': term?.notes,
       })}
       style={{
-        // borderRightWidth: term?.notes?.length,
         borderRightWidth: Math.min((term?.notes?.length ?? 0) / 2, 50),
       }}
       onClick={() => {
