@@ -51,6 +51,7 @@ export class ReviewStore {
 
   back() {
     this.reviewedTerms = null;
+    this.current = 0;
   }
 
   next() {
