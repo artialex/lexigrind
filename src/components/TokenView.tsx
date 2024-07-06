@@ -16,7 +16,7 @@ export const TokenView = observer(({ token }: { token: TokenStore }) => {
     'mark has-note': token.term?.notes && !token.term?.notes?.startsWith('*'),
     'mark exclamation': token.term?.notes?.startsWith('!'),
     'mark question': token.term?.notes?.startsWith('?'),
-    'border-b-2 border-red-400': token.token?.tags?.includes('Phrase'),
+    'border-b-2 !border-red-400': token.token?.tags?.includes('Phrase'),
   });
 
   return (
