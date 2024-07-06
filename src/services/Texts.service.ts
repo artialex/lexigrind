@@ -18,6 +18,7 @@ export class Texts {
     const processed = await processor.process(text);
 
     return String(processed.value) //
+      .replaceAll(/([.?!…])(\w)/g, '$1 $2')
       .replaceAll(/(\w)—/g, '$1 —')
       .replaceAll(/—(\w)/g, '— $1');
   }

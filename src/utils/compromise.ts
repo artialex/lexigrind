@@ -6,7 +6,7 @@ export type CompromiseView = ReturnType<typeof three>;
 
 export type CompromiseTerm = { text: string; pre: string; post: string; tags: string[] };
 
-export type CompromiseJson = { terms: CompromiseTerm[] }[];
+export type CompromiseJson = { terms: CompromiseTerm[]; text: string }[];
 
 export class Compromise {
   static POSSESSIVE = /['’]/;
@@ -26,6 +26,10 @@ export class Compromise {
       .flatMap((_) => _.terms)
       .reduce<CompromiseTerm[]>(this.resolveTokenizationInconsistencies, [])
       .map((_) => _.text.toLowerCase());
+  }
+
+  static getPhrasalVerbs(view: CompromiseView) {
+    return view.terms().json();
   }
 
   /**

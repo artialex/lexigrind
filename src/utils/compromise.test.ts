@@ -5,7 +5,17 @@ import { compromiseThree } from '@/services/Tokenizer/compromise/three.ts';
 import { Compromise } from './compromise';
 
 describe('Compromise', () => {
-  describe('.getUniqueWords', () => {
+  describe('.getPhrasalVerbs()', () => {
+    it('should', () => {
+      const text =
+        '“There,” Kell said, pointing at a street a short ways away. Vin could just barely make out a row of barred prison carts rolling toward the square.';
+      const view = compromiseThree(text);
+
+      expect(Compromise.getPhrasalVerbs(view)).toEqual([]);
+    });
+  });
+
+  describe('.getUniqueWords()', () => {
     it.each([
       [
         "His sister's laptop and his sister's tablet", //

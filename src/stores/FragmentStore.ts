@@ -18,4 +18,20 @@ export class FragmentStore {
   get paragraphs() {
     return this.contents.map(ParagraphStore.of);
   }
+
+  get wordParagraphMap() {
+    const map = new Map<string, Set<ParagraphStore>>();
+
+    this.paragraphs.forEach((p) => {
+      p.words.forEach((w) => {
+        if (map.has(w)) {
+          map.set(w, map.get(w)!.add(p));
+        } else {
+          map.set(w, new Set([p]));
+        }
+      });
+    });
+
+    return map;
+  }
 }

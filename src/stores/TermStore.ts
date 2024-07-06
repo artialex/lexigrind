@@ -33,6 +33,14 @@ export class TermStore {
     });
   };
 
+  get phrases() {
+    return (
+      (this.notes?.split('\n') ?? [])
+        .filter((_) => _.startsWith('*'))
+        ?.flatMap((_) => _.split(/[*=]/g).at(1)?.trim()) ?? []
+    );
+  }
+
   get shared() {
     return [...this.sharedNotes];
   }
