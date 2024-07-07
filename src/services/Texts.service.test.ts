@@ -14,6 +14,9 @@ describe('Texts', () => {
       ['first?second', 'first? second'],
       ['first!second', 'first! second'],
       ['first...second', 'first… second'],
+      ['first ... second', 'first… second'],
+      ['first…second', 'first… second'],
+      ['first … second', 'first… second'],
     ])('should normalize text', async (raw, expected) => {
       expect(await Texts.normalize(raw)).toBe(expected);
     });
