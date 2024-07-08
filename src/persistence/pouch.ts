@@ -1,10 +1,10 @@
 import { merge } from 'lodash';
 import PouchDB from 'pouchdb';
 
-export class PouchRepository<T extends { _id: string }> {
+export abstract class PouchRepository<T extends { _id: string }> {
   db: PouchDB.Database;
 
-  constructor(
+  protected constructor(
     private name: string,
     private options?: { test: boolean },
   ) {
@@ -57,5 +57,11 @@ export class PouchRepository<T extends { _id: string }> {
     await this.db.destroy();
     this.db = this.createDatabase(this.name);
     await this.upsertMany(items);
+  }
+
+  async dump() {
+    const response = await this.retrieveMany();
+
+    return JSON.stringify(response.items);
   }
 }
