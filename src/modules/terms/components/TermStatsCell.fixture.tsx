@@ -8,7 +8,7 @@ export default () => (
     {range(6).map((level) => {
       const terms = useMemo(() => times(random(10, 2000), () => String(random())), []);
 
-      return <TermStatsCell terms={terms} level={String(level) as Lexi.Level} />;
+      return <TermStatsCell path="" terms={terms} level={String(level) as Lexi.Level} />;
     })}
   </div>
 );
