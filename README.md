@@ -19,6 +19,7 @@ Here is where all three crisscross each other
 ### Features
 
 - Words
+  - Selecting a word copies it to clipboard
   - Marking words with levels from 0 to 5
     - "0-5" keys set level of the words (also "W" marks as "0")
     - "I" key sets the level to "ignored"

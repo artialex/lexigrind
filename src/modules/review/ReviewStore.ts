@@ -1,9 +1,8 @@
 import { sampleSize } from 'lodash';
 import { makeAutoObservable } from 'mobx';
 
-import { Level } from '@/constants/levels.ts';
-import { TermStore } from '@/stores/TermStore.ts';
-import { terms, TermsStore } from '@/stores/TermsStore.ts';
+import { TermStore } from '@/modules/terms/stores/TermStore.ts';
+import { terms, TermsStore } from '@/modules/terms/stores/TermsStore.ts';
 
 type Status = 'unreviewed' | 'unknown' | 'known';
 
@@ -12,7 +11,7 @@ export class ReviewStore {
     return new ReviewStore(terms);
   }
 
-  level: Level = '0';
+  level: Lexi.Level = '0';
   finished = false;
 
   reviewedTerms: { term: TermStore; status: Status }[] | null = null;
@@ -26,7 +25,7 @@ export class ReviewStore {
     return this.reviewedTerms?.at(this.current);
   }
 
-  populate(level: Level) {
+  populate(level: Lexi.Level) {
     this.level = level;
 
     const array = Array.from(this.terms.map);

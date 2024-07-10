@@ -125,6 +125,14 @@ body {
 }
 
 @layer utilities {
+  .selected {
+    @apply outline-dashed outline-1 outline-slate-500;
+  }
+
+  .phrase {
+    @apply border-b-2 border-red-400;
+  }
+
   .mark {
     position: relative;
   }

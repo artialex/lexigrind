@@ -10,5 +10,8 @@ export default defineConfig({
   plugins: [react(), tsconfigPaths()],
   test: {
     setupFiles: ['@vitest/web-worker'],
+    coverage: {
+      provider: 'istanbul', // or 'v8'
+    },
   },
 });

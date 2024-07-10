@@ -2,7 +2,7 @@ import cx from 'clsx';
 import { observer } from 'mobx-react-lite';
 import { useMemo } from 'react';
 
-import { meaningfulLevelKeys } from '@/constants/levels.ts';
+import { meaningfulLevelKeys } from '@/modules/levels/constants.ts';
 import { ReviewStore } from '@/modules/review/ReviewStore.ts';
 
 export const ReviewPage = observer(() => {
