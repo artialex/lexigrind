@@ -6,6 +6,7 @@ import { Term } from '@/modules/terms/components/Term.tsx';
 import { TermNotes } from '@/modules/terms/components/TermNotes.tsx';
 import { TermSharedNotes } from '@/modules/terms/components/TermSharedNotes.tsx';
 import { terms } from '@/modules/terms/stores/TermsStore.ts';
+import { LoadingState } from '@/modules/ui/components/LoadingState.tsx';
 
 interface TermViewProps {
   term: string;
@@ -15,12 +16,12 @@ export const TermView = observer((props: TermViewProps) => {
   const term = useMemo(() => terms.map.get(props.term), [props.term, terms.map]);
 
   if (!term) {
-    return <div>Loading...</div>;
+    return <LoadingState />;
   }
 
   return (
-    <div className="flex w-full flex-col">
-      <h1>
+    <div className="flex w-full flex-col overflow-y-auto p-4">
+      <h1 className="mb-2">
         <Term term={term} />
       </h1>
 

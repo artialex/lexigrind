@@ -6,6 +6,7 @@ import {
   useFragmentQuery,
   useSourceQuery,
 } from '@/modules/sources/sources.queries.ts';
+import { LoadingState } from '@/modules/ui/components/LoadingState.tsx';
 
 export function FragmentEditPage() {
   const params = useParams<any>();
@@ -22,7 +23,7 @@ export function FragmentEditPage() {
   };
 
   if (!source.data || !fragment.data || source.isLoading || fragment.isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingState />;
   }
 
   return <FragmentForm onSubmit={handleSubmit} source={source.data} fragment={fragment.data} />;

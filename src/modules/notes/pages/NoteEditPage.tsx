@@ -1,5 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 
+import { LoadingState } from '@/modules/ui/components/LoadingState.tsx';
+
 import { NoteForm } from '../forms/NoteForm.tsx';
 import { useAddNoteMutation, useNoteQuery } from '../notes.queries.ts';
 
@@ -11,7 +13,7 @@ export const NoteEditPage = () => {
   const mutation = useAddNoteMutation();
 
   if (!data || isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingState />;
   }
 
   return (

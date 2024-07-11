@@ -2,6 +2,7 @@ import { Menu } from 'react-feather';
 import { Link } from 'react-router-dom';
 
 import { TextStatsView } from '@/modules/stats/components/TextStatsView.tsx';
+import { LoadingState } from '@/modules/ui/components/LoadingState.tsx';
 
 import { useSourcesQuery } from '../sources.queries.ts';
 
@@ -9,7 +10,7 @@ export const SourcesView = () => {
   const { data, isLoading } = useSourcesQuery('0');
 
   if (!data || isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingState />;
   }
 
   if (data?.items?.length === 0) {
@@ -17,7 +18,7 @@ export const SourcesView = () => {
   }
 
   return (
-    <ul>
+    <ul className="m-4">
       {data.items.map((source) => (
         <li key={source._id} className="pb-2" data-test="source">
           <div className="my-1 flex items-center gap-2">

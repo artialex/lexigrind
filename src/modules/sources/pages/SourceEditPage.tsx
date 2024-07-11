@@ -1,6 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import { useNavigate, useParams } from 'react-router-dom';
 
+import { LoadingState } from '@/modules/ui/components/LoadingState.tsx';
+
 import { SourceForm } from '../forms/SourceForm.tsx';
 import { useEditSourceMutation, useSourceQuery } from '../sources.queries.ts';
 
@@ -18,7 +20,7 @@ export const SourceEditPage = observer(() => {
   };
 
   if (!source || isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingState />;
   }
 
   return (

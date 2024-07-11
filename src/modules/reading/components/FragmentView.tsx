@@ -21,18 +21,18 @@ export const FragmentView = observer((props: { fragment: Lexi.Fragment }) => {
   useKeyboardMarks();
 
   return (
-    <div>
+    <>
       {!settings.zen && <FragmentToolbar fragment={props.fragment} />}
       <div
-        className={cx('top-20 flex h-max gap-2', {
+        className={cx('top-20 flex gap-2 overflow-y-auto', {
           'justify-center': settings.zen,
         })}
       >
         {!settings.zen && <FragmentSideBar />}
-        <div className="relative">
+        <div>
           {!settings.zen && <FragmentGutter paragraphs={fragment.paragraphs} />}
           <div
-            className="m-4 my-auto mb-40 mt-10 px-16 "
+            className=" m-4 my-auto mb-40 mt-10 px-16"
             onClick={() => {
               terms.deselect();
             }}
@@ -43,6 +43,6 @@ export const FragmentView = observer((props: { fragment: Lexi.Fragment }) => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 });

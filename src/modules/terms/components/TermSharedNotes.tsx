@@ -3,12 +3,13 @@ import { X } from 'react-feather';
 
 import { useNotesQuery } from '@/modules/notes/notes.queries.ts';
 import { TermStore } from '@/modules/terms/stores/TermStore.ts';
+import { LoadingState } from '@/modules/ui/components/LoadingState.tsx';
 
 export const TermSharedNotes = observer(({ term }: { term: TermStore }) => {
   const { data, isLoading } = useNotesQuery();
 
   if (!data || isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingState />;
   }
 
   return (

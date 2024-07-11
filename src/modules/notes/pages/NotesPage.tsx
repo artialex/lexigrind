@@ -3,12 +3,9 @@ import { NotesView } from '../components/NotesView.tsx';
 
 export const NotesPage = () => {
   return (
-    <div>
+    <>
       <NotesToolbar />
-
-      <div className="m-4">
-        <NotesView />
-      </div>
-    </div>
+      <NotesView />
+    </>
   );
 };

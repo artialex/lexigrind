@@ -6,6 +6,7 @@ import { useMemo, useState } from 'react';
 import { meaningfulLevelKeys } from '@/modules/levels/constants.ts';
 import { TermGridCell } from '@/modules/terms/components/TermGridCell.tsx';
 import { useTermsQuery } from '@/modules/terms/terms.queries.ts';
+import { LoadingState } from '@/modules/ui/components/LoadingState.tsx';
 
 interface TermsGridProps {
   ids?: string[];
@@ -27,11 +28,11 @@ export const TermsGrid = observer(({ ids }: TermsGridProps) => {
   const grouped = useMemo(() => groupBy(data?.items, (term) => term?.level), [data]);
 
   if (!data || isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingState />;
   }
 
   return (
-    <div className="mx-4 w-full">
+    <div className="overflow-y-auto px-4">
       <button
         className="lexi-button my-2"
         onClick={() => {

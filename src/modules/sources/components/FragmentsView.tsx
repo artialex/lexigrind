@@ -16,7 +16,7 @@ export const FragmentsView = observer<FragmentsViewProps>(({ fragments }) => {
   }
 
   return (
-    <div className="pb-20">
+    <div className="m-4 pb-20">
       {fragments.map((fragment) => (
         <div key={fragment._id} className="pb-2">
           <div className="my-1 flex items-center gap-2">

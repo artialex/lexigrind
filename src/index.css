@@ -18,6 +18,10 @@ body {
   height: 100%;
 }
 
+#root {
+  @apply flex h-full flex-col;
+}
+
 @layer components {
   .lexi-cell {
     @apply w-12 rounded px-1 text-right text-sm transition hover:opacity-50;

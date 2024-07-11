@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 
 import { useNotesQuery } from '@/modules/notes/notes.queries.ts';
 import { useTermsQuery } from '@/modules/terms/terms.queries.ts';
+import { LoadingState } from '@/modules/ui/components/LoadingState.tsx';
 
 interface TermListProps {
   ids?: string[];
@@ -14,11 +15,11 @@ export const TermList = (props: TermListProps) => {
   const notes = useNotesQuery();
 
   if (!terms.data || !terms.data.items.length || terms.isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingState />;
   }
 
   return (
-    <ul className="m-4 grid grid-cols-6 gap-2">
+    <ul className="over grid grid-cols-6 gap-2 overflow-auto p-4 pb-20">
       {terms.data.items
         .filter((_) => _?.level === params.level)
         .map((term) => (
