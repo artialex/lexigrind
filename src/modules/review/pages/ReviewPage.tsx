@@ -30,7 +30,7 @@ export const ReviewPage = observer(() => {
 
           <div className="flex flex-col items-center gap-16">
             <div
-              className={cx('my-auto rounded-lg px-4 py-1 text-4xl uppercase', {
+              className={cx('font-caps my-auto rounded-lg px-4 py-1 text-4xl capitalize', {
                 [`lexi-word-${review.level}`]: review.level,
               })}
             >

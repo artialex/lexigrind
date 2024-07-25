@@ -1,30 +1,15 @@
-import { ChevronDown, ChevronUp, Plus } from 'react-feather';
+import { ChevronsUp } from 'react-feather';
 
 export const Card = () => {
   return (
-    <div className="inline-flex min-w-60 max-w-96 overflow-hidden rounded border border-fuchsia-200 bg-gradient-to-br from-fuchsia-50 to-fuchsia-100 shadow-xl">
-      <div className="flex w-6 flex-col items-center bg-fuchsia-300 p-2 text-fuchsia-900">
-        {/*<Hexagon size="16" />*/}
-        <button>
-          <ChevronUp size="16" />
-          {/*<Triangle />*/}
-        </button>
-        <span className="text-lg">5</span>
-        <button>
-          <ChevronDown size="16" />
-        </button>
-
-        <Plus className="mt-auto" size="16" />
-        {/*<div className="flex w-8 items-center justify-center rounded-full border-2 border-fuchsia-300 text-center text-lg shadow-lg"></div>*/}
+    <div className="lexi-card inline-flex border border-fuchsia-200 bg-gradient-to-br from-fuchsia-50 to-fuchsia-100">
+      <div className="flex w-6 flex-col items-center justify-center bg-fuchsia-300 p-2 text-fuchsia-900">
+        <ChevronsUp size="16" />
+        <span className="text-xl">5</span>
       </div>
-      <div className="p-4">
-        <div className="mb-2 flex items-center gap-2 font-semibold uppercase text-fuchsia-900">
-          {/*<div>/!*<ChevronUp />*!/</div>*/}
-
-          <div>
-            <span className="text-2xl">C</span>
-            <span className="text-xl">oincidence</span>
-          </div>
+      <div className="px-4 py-2">
+        <div className="font-caps mb-2 flex items-center gap-2 text-xl font-semibold text-fuchsia-900">
+          Coincidence
         </div>
 
         <div className="flex justify-between text-sm">
@@ -51,6 +36,11 @@ export const Card = () => {
         <ul className="flex gap-2">
           <li className="text-sm font-semibold underline">Amazement</li>
           <li className="text-sm font-semibold underline">Moving & Walking</li>
+        </ul>
+        <hr className="my-2 h-0 border border-fuchsia-200" />
+
+        <ul className="flex gap-2">
+          <li className="text-sm italic underline">Examples</li>
         </ul>
       </div>
     </div>

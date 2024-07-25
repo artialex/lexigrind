@@ -1,6 +1,7 @@
 import { Menu } from 'react-feather';
 import { Link } from 'react-router-dom';
 
+// import { SourceCard } from '@/modules/sources/components/SourceCard.tsx';
 import { TextStatsView } from '@/modules/stats/components/TextStatsView.tsx';
 import { LoadingState } from '@/modules/ui/components/LoadingState.tsx';
 
@@ -17,6 +18,14 @@ export const SourcesView = () => {
     return <div>No sources added</div>;
   }
 
+  // return (
+  //   <div className="grid grid-cols-4 gap-2 p-4">
+  //     {data.items.map((source) => (
+  //       <SourceCard key={source._id} source={source} />
+  //     ))}
+  //   </div>
+  // );
+
   return (
     <ul className="m-4">
       {data.items.map((source) => (
@@ -25,7 +34,7 @@ export const SourcesView = () => {
             {/*<Star className="basis-[24px]" size="16" />*/}
             <Link
               to={`/sources/${source._id}`}
-              className="basis-full truncate text-blue-500 transition hover:text-blue-400"
+              className="font-caps basis-full truncate text-blue-500 transition hover:text-blue-400"
             >
               {source.title}
             </Link>

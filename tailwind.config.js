@@ -6,13 +6,11 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     fontFamily: {
+      caps: 'Encode Sans SC',
       sans: 'Inter',
       serif: 'Crimson Pro',
     },
     extend: {
-      backgroundImage: {
-        paper: "url('https://www.toptal.com/designers/subtlepatterns/uploads/handmadepaper.png')",
-      },
       colors: {
         'lexi-ignored-light': colors.red['50'],
         'lexi-ignored-dark': colors.red['50'],

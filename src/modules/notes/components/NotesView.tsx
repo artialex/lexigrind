@@ -21,7 +21,7 @@ export const NotesView = () => {
       {data.items.map((note) => (
         <li key={note._id} className="flex items-start justify-between rounded border p-2">
           <div className="overflow-hidden">
-            <h2 className="font-bold">{note.title}</h2>
+            <h2 className="font-caps mb-1 font-bold">{note.title}</h2>
             <pre className="truncate whitespace-pre-wrap font-sans">{note.text}</pre>
           </div>
           <Link className="lexi-button px-1" to={`/notes/${note._id}/edit`}>

@@ -22,10 +22,13 @@ export const TermGridCell = observer((props: TermGridCellProps) => {
 
   return (
     <li
-      className={cx('mb-1.5 flex cursor-pointer items-baseline truncate rounded px-1', {
-        [`lexi-word-${term?.level}`]: term?.level,
-        'cell has-note': term?.notes,
-      })}
+      className={cx(
+        'font-caps mb-1.5 flex cursor-pointer items-baseline truncate rounded px-1 capitalize',
+        {
+          [`lexi-word-${term?.level}`]: term?.level,
+          'cell has-note': term?.notes,
+        },
+      )}
       style={{
         borderRightWidth: Math.min((term?.notes?.length ?? 0) / 2, 50),
       }}

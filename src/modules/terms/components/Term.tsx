@@ -9,11 +9,12 @@ interface TermProps {
 
 export const Term = observer(({ term }: TermProps) => (
   <div
-    className={cx('inline-block rounded px-2 py-0.5 uppercase', {
+    className={cx('font-caps inline-block rounded px-2 py-0.5 text-xl capitalize', {
       [`lexi-word-${term.level}`]: term.level,
     })}
   >
-    <span className="text-xl">{term.id.at(0)}</span>
-    <span className="text-lg">{term.id.slice(1)}</span>
+    {term.id}
+    {/*<span className="text-xl">{.at(0)}</span>*/}
+    {/*<span className="text-lg">{term.id.slice(1)}</span>*/}
   </div>
 ));

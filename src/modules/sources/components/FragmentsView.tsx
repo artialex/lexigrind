@@ -23,7 +23,7 @@ export const FragmentsView = observer<FragmentsViewProps>(({ fragments }) => {
             {/*<Star className="basis-[24px]" size="16" />*/}
             <Link
               to={`/sources/${params.sourceId}/fragments/${fragment._id}`}
-              className="basis-full truncate text-blue-500 transition hover:text-blue-400"
+              className="font-caps basis-full truncate text-blue-500 transition hover:text-blue-400"
             >
               {fragment.title}
             </Link>
